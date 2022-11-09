@@ -21,6 +21,7 @@ async function run(){
     try{
 
         const serviceCollection = client.db('dentist').collection('services');
+        const reviewCollection = client.db('dentist').collection('reviews');
 
         app.get('/services', async(req, res) => {
             const query = {};
@@ -47,7 +48,19 @@ async function run(){
             const result = await serviceCollection.insertOne(addService);
             res.send(result);
 
-        })
+        });
+
+
+        app.get('/reviews', async(req, res) => {
+            
+        });
+
+        app.post('/reviews', async(req, res) => {
+            const addreviews = req.body;
+            const result = await reviewCollection.insertOne(addreviews);
+            res.send(result);
+        });
+
 
     }
     finally{
